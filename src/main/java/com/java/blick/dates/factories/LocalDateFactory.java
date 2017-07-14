@@ -12,12 +12,12 @@ public class LocalDateFactory {
 		this.date = date;
 	}
 
-	public LocalDate withDefaultZone() {
-		return date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-	}
-
 	public LocalDate withZone(ZoneId zone) {
 		return date.toInstant().atZone(zone).toLocalDate();
+	}
+
+	public LocalDate withDefaultZone() {
+		return withZone(ZoneId.systemDefault());
 	}
 
 }

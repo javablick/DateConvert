@@ -12,12 +12,12 @@ public class LocalDateTimeFactory {
 		this.date = date;
 	}
 
-	public LocalDateTime withDefaultZone() {
-		return LocalDateTime.ofInstant(date.toInstant(), ZoneId.systemDefault());
-	}
-
 	public LocalDateTime withZone(ZoneId zone) {
 		return LocalDateTime.ofInstant(date.toInstant(), zone);
+	}
+
+	public LocalDateTime withDefaultZone() {
+		return withZone(ZoneId.systemDefault());
 	}
 
 }
