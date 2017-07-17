@@ -1,8 +1,8 @@
 package com.java.blick.dates.factories;
 
+import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
-import java.util.Date;
 
 public class LocalDateTimeFactory {
 
@@ -13,7 +13,7 @@ public class LocalDateTimeFactory {
 	}
 
 	public LocalDateTime withZone(ZoneId zone) {
-		return LocalDateTime.ofInstant(new Date(millis).toInstant(), zone);
+		return LocalDateTime.ofInstant(Instant.ofEpochMilli(millis), zone);
 	}
 
 	public LocalDateTime withDefaultZone() {
