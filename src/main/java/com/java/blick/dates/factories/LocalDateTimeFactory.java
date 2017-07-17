@@ -6,14 +6,14 @@ import java.util.Date;
 
 public class LocalDateTimeFactory {
 
-	private Date date;
+	private long millis;
 
-	public LocalDateTimeFactory(Date date) {
-		this.date = date;
+	public LocalDateTimeFactory(long millis) {
+		this.millis = millis;
 	}
 
 	public LocalDateTime withZone(ZoneId zone) {
-		return LocalDateTime.ofInstant(date.toInstant(), zone);
+		return LocalDateTime.ofInstant(new Date(millis).toInstant(), zone);
 	}
 
 	public LocalDateTime withDefaultZone() {

@@ -25,58 +25,52 @@ public class Timestamps {
 
 	public static LocalDateTimeFactory toLocalDateTime(Timestamp timestamp) {
 		Objects.requireNonNull(timestamp);
-		return new LocalDateTimeFactory(toDate(timestamp));
+		return new LocalDateTimeFactory(toMillis(timestamp));
 	}
 
 	public static LocalDateFactory toLocalDate(Timestamp timestamp) {
 		Objects.requireNonNull(timestamp);
-		return new LocalDateFactory(toDate(timestamp));
+		return new LocalDateFactory(toMillis(timestamp));
 	}
 
 	public static LocalTimeFactory toLocalTime(Timestamp timestamp) {
 		Objects.requireNonNull(timestamp);
-		return new LocalTimeFactory(toDate(timestamp));
+		return new LocalTimeFactory(toMillis(timestamp));
 	}
 
 	public static Month toMonth(Timestamp timestamp) {
 		Objects.requireNonNull(timestamp);
-		Calendar calendar = Dates.toCalendar(toDate(timestamp));
-		return Month.of(calendar.get(Calendar.MONTH) + 1);
+		return Millis.toMonth(toMillis(timestamp));
 	}
 
 	public static MonthDay toMonthDay(Timestamp timestamp) {
 		Objects.requireNonNull(timestamp);
-		return MonthDay.from(toDate(timestamp).toInstant());
+		return Millis.toMonthDay(toMillis(timestamp));
 	}
 
 	public static Year toYear(Timestamp timestamp) {
 		Objects.requireNonNull(timestamp);
-		Calendar calendar = Dates.toCalendar(toDate(timestamp));
-		return Year.of(calendar.get(Calendar.YEAR));
+		return Millis.toYear(toMillis(timestamp));
 	}
 
 	public static YearMonth toYearMonth(Timestamp timestamp) {
 		Objects.requireNonNull(timestamp);
-		Date date = toDate(timestamp);
-		Calendar calendar = Dates.toCalendar(date);
-		return YearMonth.of(calendar.get(Calendar.YEAR), Dates.toMonth(date));
+		return Millis.toYearMonth(toMillis(timestamp));
 	}
 
 	public static DayOfWeek toDayOfWeek(Timestamp timestamp) {
 		Objects.requireNonNull(timestamp);
-		return DayOfWeek.from(toDate(timestamp).toInstant());
+		return Millis.toDayOfWeek(toMillis(timestamp));
 	}
 
 	public static Calendar toCalendar(Timestamp timestamp) {
 		Objects.requireNonNull(timestamp);
-		Calendar calendar = Calendar.getInstance();
-		calendar.setTime(toDate(timestamp));
-		return calendar;
+		return Millis.toCalendar(toMillis(timestamp));
 	}
 
 	public static ZonedDateTimeFactory toZonedDateTime(Timestamp timestamp) {
 		Objects.requireNonNull(timestamp);
-		return new ZonedDateTimeFactory(toDate(timestamp));
+		return new ZonedDateTimeFactory(toMillis(timestamp));
 	}
 
 	public static Instant toInstant(Timestamp timestamp) {

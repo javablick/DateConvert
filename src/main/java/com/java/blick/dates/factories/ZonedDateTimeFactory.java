@@ -1,19 +1,19 @@
 package com.java.blick.dates.factories;
 
+import java.time.Instant;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
-import java.util.Date;
 
 public class ZonedDateTimeFactory {
 
-	private Date date;
+	private long millis;
 
-	public ZonedDateTimeFactory(Date date) {
-		this.date = date;
+	public ZonedDateTimeFactory(long millis) {
+		this.millis = millis;
 	}
 
 	public ZonedDateTime withZone(ZoneId zone) {
-		return ZonedDateTime.ofInstant(date.toInstant(), zone);
+		return ZonedDateTime.ofInstant(Instant.ofEpochMilli(millis), zone);
 	}
 
 	public ZonedDateTime withDefaultZone() {

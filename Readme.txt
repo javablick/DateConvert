@@ -5,7 +5,7 @@ Java library to convert common Date/Time classes
 
 Date				/		X		X		X		X		X		X		X		X		X		X		X		X		X
 Timestamp			X		/		X		X		X		X		X		X		X		X		X		X		X		X
-Millis				0		0		/		0		0		0		0		0		0		0		0		0		0		0
+Millis				0		X		/		X		X		X		X		X		X		X		X		X		X		X
 Instant				0		0		0		/		0		0		0		0		0		0		0		0		0		0
 LocalDate			0		0		0		0		/		0		0		0		0		0		0		0		0		0
 LocalDateTime		0		0		0		0		0		/		0		0		0		0		0		0		0		0

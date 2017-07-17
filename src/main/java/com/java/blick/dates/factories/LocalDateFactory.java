@@ -1,19 +1,19 @@
 package com.java.blick.dates.factories;
 
+import java.time.Instant;
 import java.time.LocalDate;
 import java.time.ZoneId;
-import java.util.Date;
 
 public class LocalDateFactory {
 
-	private Date date;
+	private long millis;
 
-	public LocalDateFactory(Date date) {
-		this.date = date;
+	public LocalDateFactory(long millis) {
+		this.millis = millis;
 	}
 
 	public LocalDate withZone(ZoneId zone) {
-		return date.toInstant().atZone(zone).toLocalDate();
+		return Instant.ofEpochMilli(millis).atZone(zone).toLocalDate();
 	}
 
 	public LocalDate withDefaultZone() {

@@ -16,7 +16,7 @@ import com.java.blick.dates.factories.LocalDateTimeFactory;
 import com.java.blick.dates.factories.LocalTimeFactory;
 import com.java.blick.dates.factories.ZonedDateTimeFactory;
 
-public class Dates {
+public final class Dates {
 
 	public static Timestamp toTimestamp(Date date) {
 		Objects.requireNonNull(date);
@@ -25,57 +25,52 @@ public class Dates {
 
 	public static LocalDateTimeFactory toLocalDateTime(Date date) {
 		Objects.requireNonNull(date);
-		return new LocalDateTimeFactory(date);
+		return new LocalDateTimeFactory(toMillis(date));
 	}
 
 	public static LocalDateFactory toLocalDate(Date date) {
 		Objects.requireNonNull(date);
-		return new LocalDateFactory(date);
+		return new LocalDateFactory(toMillis(date));
 	}
 
 	public static LocalTimeFactory toLocalTime(Date date) {
 		Objects.requireNonNull(date);
-		return new LocalTimeFactory(date);
+		return new LocalTimeFactory(toMillis(date));
 	}
 
 	public static Month toMonth(Date date) {
 		Objects.requireNonNull(date);
-		Calendar calendar = toCalendar(date);
-		return Month.of(calendar.get(Calendar.MONTH) + 1);
+		return Millis.toMonth(toMillis(date));
 	}
 
 	public static MonthDay toMonthDay(Date date) {
 		Objects.requireNonNull(date);
-		return MonthDay.from(date.toInstant());
+		return Millis.toMonthDay(toMillis(date));
 	}
 
 	public static Year toYear(Date date) {
 		Objects.requireNonNull(date);
-		Calendar calendar = toCalendar(date);
-		return Year.of(calendar.get(Calendar.YEAR));
+		return Millis.toYear(toMillis(date));
 	}
 
 	public static YearMonth toYearMonth(Date date) {
 		Objects.requireNonNull(date);
-		Calendar calendar = toCalendar(date);
-		return YearMonth.of(calendar.get(Calendar.YEAR), toMonth(date));
+		return Millis.toYearMonth(toMillis(date));
 	}
 
 	public static DayOfWeek toDayOfWeek(Date date) {
 		Objects.requireNonNull(date);
-		return DayOfWeek.from(date.toInstant());
+		return Millis.toDayOfWeek(toMillis(date));
 	}
 
 	public static Calendar toCalendar(Date date) {
 		Objects.requireNonNull(date);
-		Calendar calendar = Calendar.getInstance();
-		calendar.setTime(date);
-		return calendar;
+		return Millis.toCalendar(toMillis(date));
 	}
 
 	public static ZonedDateTimeFactory toZonedDateTime(Date date) {
 		Objects.requireNonNull(date);
-		return new ZonedDateTimeFactory(date);
+		return new ZonedDateTimeFactory(toMillis(date));
 	}
 
 	public static Instant toInstant(Date date) {
