@@ -14,13 +14,14 @@ import java.util.Objects;
 
 import com.java.blick.dates.factories.LocalDateFactory;
 import com.java.blick.dates.factories.LocalDateTimeFactory;
+import com.java.blick.dates.factories.LocalDateToDateFactory;
 import com.java.blick.dates.factories.LocalTimeFactory;
 import com.java.blick.dates.factories.ZonedDateTimeFactory;
 
 public class LocalDates {
 
-	public static Date toDate(LocalDate localDate) {
-		return null;
+	public static LocalDateToDateFactory toDate(LocalDate localDate) {
+		return new LocalDateToDateFactory(localDate);
 	}
 
 	public static Timestamp toTimestamp(Date date) {
