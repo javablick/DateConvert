@@ -16,25 +16,29 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Objects;
 
-public final class Dates {
+public final class Calendars {
 
-	private Date date;
+	private Calendar calendar;
 
-	public Dates(Date date) {
-		Objects.requireNonNull(date);
-		this.date = date;
+	public Calendars(Calendar calendar) {
+		Objects.requireNonNull(calendar);
+		this.calendar = calendar;
+	}
+
+	public Date toDate() {
+		return calendar.getTime();
 	}
 
 	public Timestamp toTimestamp() {
-		return new Timestamp(date.getTime());
+		return new Timestamp(toMillis());
 	}
 
 	public LocalDateTime toLocalDateTime() {
-		return date.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
+		return toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
 	}
 
 	public LocalDate toLocalDate() {
-		return date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+		return toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
 	}
 
 	public LocalTime toLocalTime() {
@@ -74,10 +78,10 @@ public final class Dates {
 	}
 
 	public Instant toInstant() {
-		return date.toInstant();
+		return toDate().toInstant();
 	}
 
 	public long toMillis() {
-		return date.getTime();
+		return toInstant().getEpochSecond();
 	}
 }

@@ -4,6 +4,7 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 import java.time.Instant;
+import java.util.Calendar;
 import java.util.Date;
 
 import org.junit.Test;
@@ -17,6 +18,9 @@ public class DateConvertTest {
 		Date date = DateConvert.from(INSTANT_2018).toDate();
 		Instant instant = DateConvert.from(date).toInstant();
 		assertThat(instant, is(INSTANT_2018));
+
+		Calendar calendar = DateConvert.from(date).toCalendar();
+		// date = DateConvert.from(calendar)
 	}
 
 }
