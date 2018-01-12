@@ -3,76 +3,86 @@ package com.java.blick.dates;
 import java.sql.Timestamp;
 import java.time.DayOfWeek;
 import java.time.Instant;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.Month;
 import java.time.MonthDay;
 import java.time.Year;
 import java.time.YearMonth;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Objects;
 
-import com.java.blick.dates.factories.LocalDateFactory;
-import com.java.blick.dates.factories.LocalDateTimeFactory;
-import com.java.blick.dates.factories.LocalTimeFactory;
-import com.java.blick.dates.factories.ZonedDateTimeFactory;
-
 public final class Millis {
 
-	public static Timestamp toTimestamp(long millis) {
+	private long millis;
+
+	public Millis(long millis) {
+		this.millis = millis;
+	}
+
+	public Timestamp toTimestamp() {
 		return new Timestamp(millis);
 	}
 
-	public static LocalDateTimeFactory toLocalDateTime(long millis) {
-		return new LocalDateTimeFactory(millis);
+	public LocalDateTime toLocalDateTime() {
+		return Instant.ofEpochMilli(millis).atZone(ZoneId.systemDefault()).toLocalDateTime();
 	}
 
-	public static LocalDateFactory toLocalDate(long millis) {
-		return new LocalDateFactory(millis);
+	public LocalDate toLocalDate() {
+		return toLocalDateTime().toLocalDate();
 	}
 
-	public static LocalTimeFactory toLocalTime(long millis) {
-		return new LocalTimeFactory(millis);
+	public LocalTime toLocalTime() {
+		return toLocalDateTime().toLocalTime();
 	}
 
-	public static Month toMonth(long millis) {
-		Calendar calendar = toCalendar(millis);
+	public Month toMonth() {
+		Calendar calendar = toCalendar();
 		return Month.of(calendar.get(Calendar.MONTH) + 1);
 	}
 
-	public static MonthDay toMonthDay(long millis) {
+	public MonthDay toMonthDay() {
 		Objects.requireNonNull(millis);
-		return MonthDay.from(toInstant(millis));
+		return MonthDay.from(toInstant());
 	}
 
-	public static Year toYear(long millis) {
-		Calendar calendar = toCalendar(millis);
+	public Year toYear() {
+		Calendar calendar = toCalendar();
 		return Year.of(calendar.get(Calendar.YEAR));
 	}
 
-	public static YearMonth toYearMonth(long millis) {
-		Calendar calendar = toCalendar(millis);
-		return YearMonth.of(calendar.get(Calendar.YEAR), toMonth(millis));
+	public YearMonth toYearMonth() {
+		Calendar calendar = toCalendar();
+		return YearMonth.of(calendar.get(Calendar.YEAR), toMonth());
 	}
 
-	public static DayOfWeek toDayOfWeek(long millis) {
-		return DayOfWeek.from(toInstant(millis));
+	public DayOfWeek toDayOfWeek() {
+		return DayOfWeek.from(toInstant());
 	}
 
-	public static Calendar toCalendar(long millis) {
+	public Calendar toCalendar() {
 		Calendar calendar = Calendar.getInstance();
 		calendar.setTimeInMillis(millis);
 		return calendar;
 	}
 
-	public static ZonedDateTimeFactory toZonedDateTime(long millis) {
-		return new ZonedDateTimeFactory(millis);
+	public ZonedDateTime withZone(ZoneId zone) {
+		return ZonedDateTime.ofInstant(toInstant(), zone);
 	}
 
-	public static Instant toInstant(long millis) {
+	public ZonedDateTime withDefaultZone() {
+		return withZone(ZoneId.systemDefault());
+	}
+
+	public Instant toInstant() {
 		return Instant.ofEpochMilli(millis);
 	}
 
-	public static Date toDate(long millis) {
+	public Date toDate() {
 		return new Date(millis);
 	}
 	

@@ -1,19 +1,14 @@
 Java library to convert common Date/Time classes
 
 
-					Date	Timest.	Millis	Instant	LocalD.	LocalDT	LocalT	Month	MonthD	Year	YearM	ZonedDT	Cal.	DayOfWeek
+from / to ->		Date	Timest.	Millis	Instant	LocalD.	LocalDT	LocalT	Month	MonthD	Year	YearM	ZonedDT	Cal.	DayOfWeek
 
 Date				/		X		X		X		X		X		X		X		X		X		X		X		X		X
 Timestamp			X		/		X		X		X		X		X		X		X		X		X		X		X		X
 Millis				0		X		/		X		X		X		X		X		X		X		X		X		X		X
-Instant				0		0		0		/		0		0		0		0		0		0		0		0		0		0
-LocalDate			0		0		0		0		/		0		0		0		0		0		0		0		0		0
-LocalDateTime		0		0		0		0		0		/		0		0		0		0		0		0		0		0
-LocalTime			0		0		0		0		0		0		/		0		0		0		0		0		0		0
-Month				0		0		0		0		0		0		0		/		0		0		0		0		0		0
-MonthDay			0		0		0		0		0		0		0		0		/		0		0		0		0		0
-Year				0		0		0		0		0		0		0		0		0		/		0		0		0		0
-YearMonth			0		0		0		0		0		0		0		0		0		0		/		0		0		0
+Instant				X		X		X		/		X		X		X		X		X		X		X		X		X		X
+LocalDate			X		X		X		X		/		X		-		X		X		X		X		X		X		X
+LocalDateTime		X		X		X		X		X		/		X		X		X		X		X		X		X		X
+LocalTime			0		0		0		0		-		0		/		-		-		-		-		0		-		0
 ZonedDateTime		0		0		0		0		0		0		0		0		0		0		0		/		0		0
 Calendar			0		0		0		0		0		0		0		0		0		0		0		0		/		0
-DayofWeek			0		0		0		0		0		0		0		0		0		0		0		0		0		/

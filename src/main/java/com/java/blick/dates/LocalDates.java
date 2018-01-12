@@ -1,90 +1,57 @@
 package com.java.blick.dates;
 
-import java.sql.Timestamp;
 import java.time.DayOfWeek;
-import java.time.Instant;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.time.Month;
 import java.time.MonthDay;
 import java.time.Year;
 import java.time.YearMonth;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.Objects;
 
-import com.java.blick.dates.factories.LocalDateFactory;
-import com.java.blick.dates.factories.LocalDateTimeFactory;
-import com.java.blick.dates.factories.LocalDateToDateFactory;
-import com.java.blick.dates.factories.LocalTimeFactory;
-import com.java.blick.dates.factories.ZonedDateTimeFactory;
+public final class LocalDates {
 
-public class LocalDates {
+	private LocalDate localDate;
 
-	public static LocalDateToDateFactory toDate(LocalDate localDate) {
-		return new LocalDateToDateFactory(localDate);
+	public LocalDates(LocalDate localDate) {
+		Objects.requireNonNull(localDate);
+		this.localDate = localDate;
 	}
 
-	public static Timestamp toTimestamp(Date date) {
-		Objects.requireNonNull(date);
-		return new Timestamp(date.getTime());
+	public LocalDateTimes atStartOfDay() {
+		return new LocalDateTimes(localDate.atStartOfDay());
 	}
 
-	public static LocalDateTimeFactory toLocalDateTime(Date date) {
-		Objects.requireNonNull(date);
-		return new LocalDateTimeFactory(toMillis(date));
+	public LocalDateTimes atLocalTime(LocalTime time) {
+		return new LocalDateTimes(localDate.atTime(time));
 	}
 
-	public static LocalDateFactory toLocalDate(Date date) {
-		Objects.requireNonNull(date);
-		return new LocalDateFactory(toMillis(date));
+	public LocalDateTimes atLocalTime(int hour, int minute, int second) {
+		return new LocalDateTimes(localDate.atTime(hour, minute, second));
 	}
 
-	public static LocalTimeFactory toLocalTime(Date date) {
-		Objects.requireNonNull(date);
-		return new LocalTimeFactory(toMillis(date));
+	public LocalDateTimes atLocalTime(int hour, int minute, int second, int nanoOfSecond) {
+		return new LocalDateTimes(localDate.atTime(hour, minute, second, nanoOfSecond));
 	}
 
-	public static Month toMonth(Date date) {
-		Objects.requireNonNull(date);
-		return Millis.toMonth(toMillis(date));
+	public Month toMonth() {
+		return localDate.getMonth();
 	}
 
-	public static MonthDay toMonthDay(Date date) {
-		Objects.requireNonNull(date);
-		return Millis.toMonthDay(toMillis(date));
+	public MonthDay toMonthDay() {
+		return MonthDay.of(toMonth(), localDate.getDayOfMonth());
 	}
 
-	public static Year toYear(Date date) {
-		Objects.requireNonNull(date);
-		return Millis.toYear(toMillis(date));
+	public Year toYear() {
+		return Year.of(localDate.getYear());
 	}
 
-	public static YearMonth toYearMonth(Date date) {
-		Objects.requireNonNull(date);
-		return Millis.toYearMonth(toMillis(date));
+	public YearMonth toYearMonth() {
+		return YearMonth.of(localDate.getYear(), localDate.getMonth());
 	}
 
-	public static DayOfWeek toDayOfWeek(Date date) {
-		Objects.requireNonNull(date);
-		return Millis.toDayOfWeek(toMillis(date));
+	public DayOfWeek toDayOfWeek() {
+		return localDate.getDayOfWeek();
 	}
 
-	public static Calendar toCalendar(Date date) {
-		Objects.requireNonNull(date);
-		return Millis.toCalendar(toMillis(date));
-	}
-
-	public static ZonedDateTimeFactory toZonedDateTime(Date date) {
-		Objects.requireNonNull(date);
-		return new ZonedDateTimeFactory(toMillis(date));
-	}
-
-	public static Instant toInstant(Date date) {
-		Objects.requireNonNull(date);
-		return date.toInstant();
-	}
-
-	public static long toMillis(Date date) {
-		return date.getTime();
-	}
 }

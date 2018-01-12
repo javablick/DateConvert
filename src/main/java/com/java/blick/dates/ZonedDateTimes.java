@@ -10,35 +10,39 @@ import java.time.Month;
 import java.time.MonthDay;
 import java.time.Year;
 import java.time.YearMonth;
-import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Objects;
 
-public final class Dates {
+public class ZonedDateTimes {
 
-	private Date date;
+	private ZonedDateTime zonedDateTime;
 
-	public Dates(Date date) {
-		Objects.requireNonNull(date);
-		this.date = date;
+	public ZonedDateTimes(ZonedDateTime zonedDateTime) {
+		Objects.requireNonNull(zonedDateTime);
+		this.zonedDateTime = zonedDateTime;
+	}
+
+	public Date toDate() {
+		return new Date(toMillis());
+
 	}
 
 	public Timestamp toTimestamp() {
-		return new Timestamp(date.getTime());
+		return new Timestamp(toMillis());
 	}
 
 	public LocalDateTime toLocalDateTime() {
-		return date.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
+		return zonedDateTime.toLocalDateTime();
 	}
 
-	public LocalDate toLocalDate(Date date) {
-		return date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+	public LocalDate toLocalDate() {
+		return zonedDateTime.toLocalDate();
 	}
 
-	public LocalTime toLocalTime(Date date) {
-		return toLocalDateTime().toLocalTime();
+	public LocalTime toLocalTime() {
+		return zonedDateTime.toLocalTime();
 	}
 
 	public Month toMonth() {
@@ -65,19 +69,12 @@ public final class Dates {
 		return new Millis(toMillis()).toCalendar();
 	}
 
-	public ZonedDateTime withZone(ZoneId zone) {
-		return ZonedDateTime.ofInstant(toInstant(), zone);
-	}
-
-	public ZonedDateTime withDefaultZone() {
-		return withZone(ZoneId.systemDefault());
-	}
-
 	public Instant toInstant() {
-		return date.toInstant();
+		return zonedDateTime.toInstant();
 	}
 
 	public long toMillis() {
-		return date.getTime();
+		return toInstant().toEpochMilli();
 	}
+
 }

@@ -3,82 +3,81 @@ package com.java.blick.dates;
 import java.sql.Timestamp;
 import java.time.DayOfWeek;
 import java.time.Instant;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.Month;
 import java.time.MonthDay;
 import java.time.Year;
 import java.time.YearMonth;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Objects;
 
-import com.java.blick.dates.factories.LocalDateFactory;
-import com.java.blick.dates.factories.LocalDateTimeFactory;
-import com.java.blick.dates.factories.LocalTimeFactory;
-import com.java.blick.dates.factories.ZonedDateTimeFactory;
-
 public class Instants {
 
-	public static Date toDate(Instant instant) {
+	private Instant instant;
+
+	public Instants(Instant instant) {
 		Objects.requireNonNull(instant);
+		this.instant = instant;
+	}
+
+	public Date toDate() {
 		return Date.from(instant);
 	}
 
-	public static Timestamp toTimestamp(Instant instant) {
-		Objects.requireNonNull(instant);
-		return new Timestamp(toMillis(instant));
+	public Timestamp toTimestamp() {
+		return new Timestamp(toMillis());
 	}
 
-	public static LocalDateTimeFactory toLocalDateTime(Instant instant) {
-		Objects.requireNonNull(instant);
-		return new LocalDateTimeFactory(toMillis(instant));
+	public LocalDateTime toLocalDateTime() {
+		return instant.atZone(ZoneId.systemDefault()).toLocalDateTime();
 	}
 
-	public static LocalDateFactory toLocalDate(Instant instant) {
-		Objects.requireNonNull(instant);
-		return new LocalDateFactory(toMillis(instant));
+	public LocalDate toLocalDate() {
+		return toLocalDateTime().toLocalDate();
 	}
 
-	public static LocalTimeFactory toLocalTime(Instant instant) {
-		Objects.requireNonNull(instant);
-		return new LocalTimeFactory(toMillis(instant));
+	public LocalTime toLocalTime() {
+		return toLocalDateTime().toLocalTime();
 	}
 
-	public static Month toMonth(Instant instant) {
-		Objects.requireNonNull(instant);
-		return Millis.toMonth(toMillis(instant));
+	public Month toMonth() {
+		return new Millis(toMillis()).toMonth();
 	}
 
-	public static MonthDay toMonthDay(Instant instant) {
-		Objects.requireNonNull(instant);
-		return Millis.toMonthDay(toMillis(instant));
+	public MonthDay toMonthDay() {
+		return new Millis(toMillis()).toMonthDay();
 	}
 
-	public static Year toYear(Instant instant) {
-		Objects.requireNonNull(instant);
-		return Millis.toYear(toMillis(instant));
+	public Year toYear() {
+		return new Millis(toMillis()).toYear();
 	}
 
-	public static YearMonth toYearMonth(Instant instant) {
-		Objects.requireNonNull(instant);
-		return Millis.toYearMonth(toMillis(instant));
+	public YearMonth toYearMonth() {
+		return new Millis(toMillis()).toYearMonth();
 	}
 
-	public static DayOfWeek toDayOfWeek(Instant instant) {
-		Objects.requireNonNull(instant);
-		return Millis.toDayOfWeek(toMillis(instant));
+	public DayOfWeek toDayOfWeek() {
+		return new Millis(toMillis()).toDayOfWeek();
 	}
 
-	public static Calendar toCalendar(Instant instant) {
-		Objects.requireNonNull(instant);
-		return Millis.toCalendar(toMillis(instant));
+	public Calendar toCalendar() {
+		return new Millis(toMillis()).toCalendar();
 	}
 
-	public static ZonedDateTimeFactory toZonedDateTime(Instant instant) {
-		Objects.requireNonNull(instant);
-		return new ZonedDateTimeFactory(toMillis(instant));
+	public ZonedDateTime toZonedDateTimeWithZone(ZoneId zone) {
+		return ZonedDateTime.ofInstant(instant, zone);
 	}
 
-	public static long toMillis(Instant instant) {
+	public ZonedDateTime toZonedDateTimeWithDefaultZone() {
+		return toZonedDateTimeWithZone(ZoneId.systemDefault());
+	}
+
+	public long toMillis() {
 		return instant.toEpochMilli();
 	}
 
