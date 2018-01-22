@@ -1,4 +1,4 @@
-package com.java.blick.dates;
+package com.java.blick.dates.converter;
 
 import java.sql.Timestamp;
 import java.time.DayOfWeek;
@@ -65,12 +65,12 @@ public final class Dates {
 		return new Millis(toMillis()).toCalendar();
 	}
 
-	public ZonedDateTime withZone(ZoneId zone) {
+	public ZonedDateTime toZonedDateTime(ZoneId zone) {
 		return ZonedDateTime.ofInstant(toInstant(), zone);
 	}
 
-	public ZonedDateTime withDefaultZone() {
-		return withZone(ZoneId.systemDefault());
+	public ZonedDateTime toZonedDateTime() {
+		return toZonedDateTime(ZoneId.systemDefault());
 	}
 
 	public Instant toInstant() {

@@ -1,4 +1,4 @@
-package com.java.blick.dates;
+package com.java.blick.dates.converter;
 
 import java.sql.Timestamp;
 import java.time.DayOfWeek;
@@ -16,20 +16,21 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Objects;
 
-public final class Millis {
+public class Timestamps {
 
-	private long millis;
+	private Timestamp timestamp;
 
-	public Millis(long millis) {
-		this.millis = millis;
+	public Timestamps(Timestamp timestamp) {
+		Objects.requireNonNull(timestamp);
+		this.timestamp = timestamp;
 	}
 
-	public Timestamp toTimestamp() {
-		return new Timestamp(millis);
+	public Date toDate() {
+		return new Date(timestamp.getTime());
 	}
 
 	public LocalDateTime toLocalDateTime() {
-		return Instant.ofEpochMilli(millis).atZone(ZoneId.systemDefault()).toLocalDateTime();
+		return toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
 	}
 
 	public LocalDate toLocalDate() {
@@ -41,33 +42,27 @@ public final class Millis {
 	}
 
 	public Month toMonth() {
-		Calendar calendar = toCalendar();
-		return Month.of(calendar.get(Calendar.MONTH) + 1);
+		return new Millis(toMillis()).toMonth();
 	}
 
 	public MonthDay toMonthDay() {
-		Objects.requireNonNull(millis);
-		return MonthDay.from(toInstant());
+		return new Millis(toMillis()).toMonthDay();
 	}
 
 	public Year toYear() {
-		Calendar calendar = toCalendar();
-		return Year.of(calendar.get(Calendar.YEAR));
+		return new Millis(toMillis()).toYear();
 	}
 
 	public YearMonth toYearMonth() {
-		Calendar calendar = toCalendar();
-		return YearMonth.of(calendar.get(Calendar.YEAR), toMonth());
+		return new Millis(toMillis()).toYearMonth();
 	}
 
 	public DayOfWeek toDayOfWeek() {
-		return DayOfWeek.from(toInstant());
+		return new Millis(toMillis()).toDayOfWeek();
 	}
 
 	public Calendar toCalendar() {
-		Calendar calendar = Calendar.getInstance();
-		calendar.setTimeInMillis(millis);
-		return calendar;
+		return new Millis(toMillis()).toCalendar();
 	}
 
 	public ZonedDateTime withZone(ZoneId zone) {
@@ -79,11 +74,11 @@ public final class Millis {
 	}
 
 	public Instant toInstant() {
-		return Instant.ofEpochMilli(millis);
+		return timestamp.toInstant();
 	}
 
-	public Date toDate() {
-		return new Date(millis);
+	public long toMillis() {
+		return timestamp.getTime();
 	}
-	
+
 }

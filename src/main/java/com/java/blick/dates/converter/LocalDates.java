@@ -1,4 +1,4 @@
-package com.java.blick.dates;
+package com.java.blick.dates.converter;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
@@ -22,15 +22,15 @@ public final class LocalDates {
 		return new LocalDateTimes(localDate.atStartOfDay());
 	}
 
-	public LocalDateTimes atLocalTime(LocalTime time) {
+	public LocalDateTimes toLocalDateTimes(LocalTime time) {
 		return new LocalDateTimes(localDate.atTime(time));
 	}
 
-	public LocalDateTimes atLocalTime(int hour, int minute, int second) {
+	public LocalDateTimes toLocalDateTimes(int hour, int minute, int second) {
 		return new LocalDateTimes(localDate.atTime(hour, minute, second));
 	}
 
-	public LocalDateTimes atLocalTime(int hour, int minute, int second, int nanoOfSecond) {
+	public LocalDateTimes toLocalDateTimes(int hour, int minute, int second, int nanoOfSecond) {
 		return new LocalDateTimes(localDate.atTime(hour, minute, second, nanoOfSecond));
 	}
 

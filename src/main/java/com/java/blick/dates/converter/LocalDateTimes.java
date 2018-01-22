@@ -1,4 +1,4 @@
-package com.java.blick.dates;
+package com.java.blick.dates.converter;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -15,16 +15,20 @@ public final class LocalDateTimes {
 		this.localDateTime = localDateTime;
 	}
 
-	public LocalDateTime toLocalDateTime() {
+	public LocalDateTime get() {
 		return localDateTime;
 	}
 
-	public ZonedDateTimes withZone(ZoneId zone) {
+	public LocalDateTime toLocalDateTime() {
+		return get();
+	}
+
+	public ZonedDateTimes toZonedDateTimes(ZoneId zone) {
 		return new ZonedDateTimes(localDateTime.atZone(zone));
 	}
 
-	public ZonedDateTimes withDefaultZone() {
-		return withZone(ZoneId.systemDefault());
+	public ZonedDateTimes toZonedDateTimes() {
+		return toZonedDateTimes(ZoneId.systemDefault());
 	}
 
 	public LocalDate toLocalDate() {

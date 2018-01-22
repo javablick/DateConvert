@@ -1,4 +1,4 @@
-package com.java.blick.dates;
+package com.java.blick.dates.converter;
 
 import java.sql.Timestamp;
 import java.time.DayOfWeek;
@@ -10,23 +10,23 @@ import java.time.Month;
 import java.time.MonthDay;
 import java.time.Year;
 import java.time.YearMonth;
+import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Objects;
 
-public class ZonedDateTimes {
+public class Instants {
 
-	private ZonedDateTime zonedDateTime;
+	private Instant instant;
 
-	public ZonedDateTimes(ZonedDateTime zonedDateTime) {
-		Objects.requireNonNull(zonedDateTime);
-		this.zonedDateTime = zonedDateTime;
+	public Instants(Instant instant) {
+		Objects.requireNonNull(instant);
+		this.instant = instant;
 	}
 
 	public Date toDate() {
-		return new Date(toMillis());
-
+		return Date.from(instant);
 	}
 
 	public Timestamp toTimestamp() {
@@ -34,15 +34,15 @@ public class ZonedDateTimes {
 	}
 
 	public LocalDateTime toLocalDateTime() {
-		return zonedDateTime.toLocalDateTime();
+		return instant.atZone(ZoneId.systemDefault()).toLocalDateTime();
 	}
 
 	public LocalDate toLocalDate() {
-		return zonedDateTime.toLocalDate();
+		return toLocalDateTime().toLocalDate();
 	}
 
 	public LocalTime toLocalTime() {
-		return zonedDateTime.toLocalTime();
+		return toLocalDateTime().toLocalTime();
 	}
 
 	public Month toMonth() {
@@ -69,12 +69,16 @@ public class ZonedDateTimes {
 		return new Millis(toMillis()).toCalendar();
 	}
 
-	public Instant toInstant() {
-		return zonedDateTime.toInstant();
+	public ZonedDateTime toZonedDateTimeWithZone(ZoneId zone) {
+		return ZonedDateTime.ofInstant(instant, zone);
+	}
+
+	public ZonedDateTime toZonedDateTimeWithDefaultZone() {
+		return toZonedDateTimeWithZone(ZoneId.systemDefault());
 	}
 
 	public long toMillis() {
-		return toInstant().toEpochMilli();
+		return instant.toEpochMilli();
 	}
 
 }

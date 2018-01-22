@@ -1,4 +1,4 @@
-package com.java.blick.dates;
+package com.java.blick.dates.converter;
 
 import java.sql.Timestamp;
 import java.time.DayOfWeek;

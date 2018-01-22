@@ -1,4 +1,4 @@
-package com.java.blick.dates;
+package com.java.blick.dates.converter;
 
 import java.sql.Timestamp;
 import java.time.DayOfWeek;
@@ -16,21 +16,20 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Objects;
 
-public class Timestamps {
+public final class Millis {
 
-	private Timestamp timestamp;
+	private long millis;
 
-	public Timestamps(Timestamp timestamp) {
-		Objects.requireNonNull(timestamp);
-		this.timestamp = timestamp;
+	public Millis(long millis) {
+		this.millis = millis;
 	}
 
-	public Date toDate() {
-		return new Date(timestamp.getTime());
+	public Timestamp toTimestamp() {
+		return new Timestamp(millis);
 	}
 
 	public LocalDateTime toLocalDateTime() {
-		return toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
+		return Instant.ofEpochMilli(millis).atZone(ZoneId.systemDefault()).toLocalDateTime();
 	}
 
 	public LocalDate toLocalDate() {
@@ -42,27 +41,33 @@ public class Timestamps {
 	}
 
 	public Month toMonth() {
-		return new Millis(toMillis()).toMonth();
+		Calendar calendar = toCalendar();
+		return Month.of(calendar.get(Calendar.MONTH) + 1);
 	}
 
 	public MonthDay toMonthDay() {
-		return new Millis(toMillis()).toMonthDay();
+		Objects.requireNonNull(millis);
+		return MonthDay.from(toInstant());
 	}
 
 	public Year toYear() {
-		return new Millis(toMillis()).toYear();
+		Calendar calendar = toCalendar();
+		return Year.of(calendar.get(Calendar.YEAR));
 	}
 
 	public YearMonth toYearMonth() {
-		return new Millis(toMillis()).toYearMonth();
+		Calendar calendar = toCalendar();
+		return YearMonth.of(calendar.get(Calendar.YEAR), toMonth());
 	}
 
 	public DayOfWeek toDayOfWeek() {
-		return new Millis(toMillis()).toDayOfWeek();
+		return DayOfWeek.from(toInstant());
 	}
 
 	public Calendar toCalendar() {
-		return new Millis(toMillis()).toCalendar();
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTimeInMillis(millis);
+		return calendar;
 	}
 
 	public ZonedDateTime withZone(ZoneId zone) {
@@ -74,11 +79,11 @@ public class Timestamps {
 	}
 
 	public Instant toInstant() {
-		return timestamp.toInstant();
+		return Instant.ofEpochMilli(millis);
 	}
 
-	public long toMillis() {
-		return timestamp.getTime();
+	public Date toDate() {
+		return new Date(millis);
 	}
-
+	
 }
