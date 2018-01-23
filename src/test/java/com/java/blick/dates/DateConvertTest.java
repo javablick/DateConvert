@@ -50,35 +50,65 @@ public class DateConvertTest {
 		assertThat(DateConvert.from(millis).toDate(), is(date));
 
 		timestamp = DateConvert.from(date).toTimestamp();
-		assertThat(DateConvert.from(timestamp), is(date));
+		assertThat(DateConvert.from(timestamp).toDate(), is(date));
 	}
 
 	@Test
 	public void converting_from_to_calendar() {
-		Calendar cal = Calendar.getInstance();
-		cal.clear();
-		cal.set(2018, 1, 1, 12, 30);
+		calendar = Calendar.getInstance();
+		calendar.clear();
+		calendar.set(2018, 1, 1, 12, 30);
 
-		date = DateConvert.from(cal).toDate();
-		assertThat(DateConvert.from(date).toCalendar(), is(cal));
+		date = DateConvert.from(calendar).toDate();
+		assertThat(DateConvert.from(date).toCalendar(), is(calendar));
 
-		instant = DateConvert.from(cal).toInstant();
-		assertThat(DateConvert.from(instant).toCalendar(), is(cal));
+		instant = DateConvert.from(calendar).toInstant();
+		assertThat(DateConvert.from(instant).toCalendar(), is(calendar));
 
-		localDate = DateConvert.from(cal).toLocalDate();
-		assertThat(DateConvert.from(localDate).withLocalTime(12, 30, 0, 0).withDefaultZoneId().toCalendar(), is(cal));
+		localDate = DateConvert.from(calendar).toLocalDate();
+		assertThat(DateConvert.from(localDate).withLocalTime(12, 30, 0, 0).withDefaultZoneId().toCalendar(),
+				is(calendar));
 
-		localDateTime = DateConvert.from(cal).toLocalDateTime();
-		assertThat(DateConvert.from(localDate).withLocalTime(12, 30, 0, 0).withDefaultZoneId().toCalendar(), is(cal));
+		localDateTime = DateConvert.from(calendar).toLocalDateTime();
+		assertThat(DateConvert.from(localDate).withLocalTime(12, 30, 0, 0).withDefaultZoneId().toCalendar(),
+				is(calendar));
 
-		zonedDateTime = DateConvert.from(cal).toZonedDateTimeWithDefaultZone();
-		assertThat(DateConvert.from(zonedDateTime).toCalendar(), is(cal));
+		zonedDateTime = DateConvert.from(calendar).toZonedDateTimeWithDefaultZone();
+		assertThat(DateConvert.from(zonedDateTime).toCalendar(), is(calendar));
 
-		millis = DateConvert.from(cal).toMillis();
-		assertThat(DateConvert.from(millis).toCalendar(), is(cal));
+		millis = DateConvert.from(calendar).toMillis();
+		assertThat(DateConvert.from(millis).toCalendar(), is(calendar));
 
-		timestamp = DateConvert.from(cal).toTimestamp();
-		assertThat(DateConvert.from(timestamp).toCalendar(), is(cal));
+		timestamp = DateConvert.from(calendar).toTimestamp();
+		assertThat(DateConvert.from(timestamp).toCalendar(), is(calendar));
+	}
+
+	@Test
+	public void converting_from_to_instant() {
+		instant = Instant.ofEpochMilli(1514798100000L); // 2018-1-1 10:15:0.0
+
+		date = DateConvert.from(instant).toDate();
+		assertThat(DateConvert.from(date).toInstant(), is(instant));
+
+		calendar = DateConvert.from(instant).toCalendar();
+		assertThat(DateConvert.from(calendar).toInstant(), is(instant));
+
+		localDate = DateConvert.from(instant).toLocalDate();
+		assertThat(DateConvert.from(localDate).withLocalTime(10, 15, 0, 0).withDefaultZoneId().toInstant(),
+				is(instant));
+
+		localDateTime = DateConvert.from(instant).toLocalDateTime();
+		assertThat(DateConvert.from(localDate).withLocalTime(10, 15, 0, 0).withDefaultZoneId().toInstant(),
+				is(instant));
+
+		zonedDateTime = DateConvert.from(instant).toZonedDateTimeWithDefaultZone();
+		assertThat(DateConvert.from(zonedDateTime).toInstant(), is(instant));
+
+		millis = DateConvert.from(instant).toMillis();
+		assertThat(DateConvert.from(millis).toInstant(), is(instant));
+
+		timestamp = DateConvert.from(instant).toTimestamp();
+		assertThat(DateConvert.from(timestamp).toInstant(), is(instant));
 	}
 
 }
