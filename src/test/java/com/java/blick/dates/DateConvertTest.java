@@ -79,7 +79,6 @@ public class DateConvertTest {
 
 		timestamp = DateConvert.from(cal).toTimestamp();
 		assertThat(DateConvert.from(timestamp).toCalendar(), is(cal));
-
 	}
 
 }

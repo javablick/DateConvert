@@ -90,6 +90,6 @@ public final class Calendars {
 	}
 
 	public long toMillis() {
-		return toInstant().getEpochSecond();
+		return calendar.getTimeInMillis();
 	}
 }

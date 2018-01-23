@@ -66,6 +66,7 @@ public final class Millis {
 
 	public Calendar toCalendar() {
 		Calendar calendar = Calendar.getInstance();
+		calendar.clear();
 		calendar.setTimeInMillis(millis);
 		return calendar;
 	}
