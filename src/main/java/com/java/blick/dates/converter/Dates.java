@@ -3,9 +3,6 @@ package com.java.blick.dates.converter;
 import java.sql.Timestamp;
 import java.time.DayOfWeek;
 import java.time.Instant;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
 import java.time.Month;
 import java.time.MonthDay;
 import java.time.Year;
@@ -27,18 +24,6 @@ public final class Dates {
 
 	public Timestamp toTimestamp() {
 		return new Timestamp(date.getTime());
-	}
-
-	public LocalDateTime toLocalDateTime() {
-		return date.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
-	}
-
-	public LocalDate toLocalDate() {
-		return date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-	}
-
-	public LocalTime toLocalTime() {
-		return toLocalDateTime().toLocalTime();
 	}
 
 	public Month toMonth() {
@@ -71,6 +56,14 @@ public final class Dates {
 
 	public ZonedDateTime toZonedDateTime() {
 		return toZonedDateTime(ZoneId.systemDefault());
+	}
+
+	public ZonedDateTimes withZone(ZoneId zone) {
+		return new ZonedDateTimes(ZonedDateTime.ofInstant(toInstant(), zone));
+	}
+
+	public ZonedDateTimes withDefaultZone() {
+		return new ZonedDateTimes(toZonedDateTime(ZoneId.systemDefault()));
 	}
 
 	public Instant toInstant() {

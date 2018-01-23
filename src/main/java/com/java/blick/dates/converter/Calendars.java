@@ -69,12 +69,20 @@ public final class Calendars {
 		return new Millis(toMillis()).toCalendar();
 	}
 
-	public ZonedDateTime withZone(ZoneId zone) {
-		return ZonedDateTime.ofInstant(toInstant(), zone);
+	public ZonedDateTimes withZone(ZoneId zone) {
+		return new ZonedDateTimes(ZonedDateTime.ofInstant(toInstant(), zone));
 	}
 
-	public ZonedDateTime withDefaultZone() {
+	public ZonedDateTimes withDefaultZone() {
 		return withZone(ZoneId.systemDefault());
+	}
+
+	public ZonedDateTime toZonedDateTime(ZoneId zone) {
+		return withZone(zone).toZonedDateTime();
+	}
+
+	public ZonedDateTime toZonedDateTimeWithDefaultZone() {
+		return withZone(ZoneId.systemDefault()).toZonedDateTime();
 	}
 
 	public Instant toInstant() {

@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.util.Objects;
 
 public final class LocalDateTimes {
@@ -15,20 +16,24 @@ public final class LocalDateTimes {
 		this.localDateTime = localDateTime;
 	}
 
-	public LocalDateTime get() {
+	public LocalDateTime toLocalDateTime() {
 		return localDateTime;
 	}
 
-	public LocalDateTime toLocalDateTime() {
-		return get();
+	public ZonedDateTime toZonedDateTime(ZoneId zone) {
+		return withZone(zone).toZonedDateTime();
 	}
 
-	public ZonedDateTimes toZonedDateTimes(ZoneId zone) {
+	public ZonedDateTime toZonedDateTimeWithDefaultZone() {
+		return withZone(ZoneId.systemDefault()).toZonedDateTime();
+	}
+
+	public ZonedDateTimes withZone(ZoneId zone) {
 		return new ZonedDateTimes(localDateTime.atZone(zone));
 	}
 
-	public ZonedDateTimes toZonedDateTimes() {
-		return toZonedDateTimes(ZoneId.systemDefault());
+	public ZonedDateTimes withDefaultZoneId() {
+		return withZone(ZoneId.systemDefault());
 	}
 
 	public LocalDate toLocalDate() {

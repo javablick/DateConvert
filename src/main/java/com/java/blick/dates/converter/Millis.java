@@ -70,12 +70,20 @@ public final class Millis {
 		return calendar;
 	}
 
-	public ZonedDateTime withZone(ZoneId zone) {
+	public ZonedDateTimes withZone(ZoneId zone) {
+		return new ZonedDateTimes(ZonedDateTime.ofInstant(toInstant(), zone));
+	}
+
+	public ZonedDateTimes withDefaultZone() {
+		return withZone(ZoneId.systemDefault());
+	}
+
+	public ZonedDateTime toZonedDateTime(ZoneId zone) {
 		return ZonedDateTime.ofInstant(toInstant(), zone);
 	}
 
-	public ZonedDateTime withDefaultZone() {
-		return withZone(ZoneId.systemDefault());
+	public ZonedDateTime toZonedDateTimeWithDefaultZone() {
+		return toZonedDateTime(ZoneId.systemDefault());
 	}
 
 	public Instant toInstant() {

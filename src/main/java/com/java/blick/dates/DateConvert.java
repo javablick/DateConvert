@@ -21,7 +21,7 @@ import com.java.blick.dates.converter.ZonedDateTimes;
  * Converts different kind of dates in other types
  * 
  * @author Michael Kosin
- *
+ * 
  */
 public class DateConvert {
 

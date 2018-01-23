@@ -24,12 +24,8 @@ public class ZonedDateTimes {
 		this.zonedDateTime = zonedDateTime;
 	}
 
-	public ZonedDateTime get() {
-		return zonedDateTime;
-	}
-
 	public ZonedDateTime toZonedDateTime() {
-		return get();
+		return zonedDateTime;
 	}
 
 	public Date toDate() {
