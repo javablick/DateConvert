@@ -21,6 +21,8 @@ For example:
 - ZonedDateTime
 
 ## Questions? Need help?
-[mailto:michael.kosin@java-blick.com?Subject=DateConvert](Write me an email)
+Write me a [email](mailto:michael.kosin@java-blick.com?Subject=DateConvert).
+
+See also my homepage [https://www.java-blick.com]
 
 
