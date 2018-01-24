@@ -11,8 +11,11 @@ For example:
 // Date -> Calendar
 DateConvert.from(date).toCalendar();
 
-// LocalDate -> Date
-DateConvert.from(localDate).withLocalTime(12, 30, 0, 0).withDefaultZoneId().toDate()
+// Calendar to UTC ZonedDateTime
+DateConvert.from(calendar).toZonedDateTime(ZoneId.of("UTC"));
+
+// LocalDate -> Date with Time 12:30 and default ZoneId
+DateConvert.from(localDate).withLocalTime(12, 30, 0, 0).withDefaultZoneId().toDate();
 ```
 
 ## Converts from/to
