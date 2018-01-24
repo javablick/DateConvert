@@ -10,9 +10,9 @@
 	</properties>
 
 	<scm>
-		<connection>scm:git:git@github.com:Java-Blick/DateConvert.git</connection>
-		<url>scm:git:git@github.com:Java-Blick/DateConvert.git</url>
-		<developerConnection>scm:git:git@github.com:Java-Blick/DateConvert.git</developerConnection>
+		<connection>https://github.com/Java-Blick/DateConvert.git</connection>
+		<url>https://github.com/Java-Blick/DateConvert.git</url>
+		<developerConnection>https://github.com/Java-Blick/DateConvert.git</developerConnection>
 	</scm>
 
 	<build>
