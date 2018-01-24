@@ -23,6 +23,6 @@ For example:
 ## Questions? Need help?
 Write me a [email](mailto:michael.kosin@java-blick.com?Subject=DateConvert).
 
-See also my homepage [https://www.java-blick.com]
+See also my [homepage https://www.java-blick.com].
 
 
