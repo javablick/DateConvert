@@ -85,7 +85,10 @@ public class DateConvertTest {
 
 	@Test
 	public void converting_from_to_instant() {
-		instant = Instant.ofEpochMilli(1514798100000L); // 2018-1-1 10:15:0.0
+		calendar = Calendar.getInstance();
+		calendar.clear();
+		calendar.set(2018, 1, 1, 10, 15);
+		instant = calendar.getTime().toInstant();
 
 		date = DateConvert.from(instant).toDate();
 		assertThat(DateConvert.from(date).toInstant(), is(instant));
