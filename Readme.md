@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.org/javablick/DateConvert.svg?branch=master)](https://travis-ci.org/javablick/DateConvert)
 [![Coverage Status](https://coveralls.io/repos/github/javablick/DateConvert/badge.svg?branch=master)](https://coveralls.io/github/javablick/DateConvert?branch=master)
 # DateConvert
 
