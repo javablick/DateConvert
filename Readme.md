@@ -1,6 +1,9 @@
+[![Coverage Status](https://coveralls.io/repos/github/javablick/DateConvert/badge.svg?branch=master)](https://coveralls.io/github/javablick/DateConvert?branch=master)
 # DateConvert
 
-Java library to convert common Date/Time classes
+Simple Java library to convert common Date/Time objects. Use old style Date or Calendar and convert it to new Java 7+ Date/Time objects or visa versa.
+
+Take a `java.time.LocalDate` object, add time and zone and convert it to `java.util.Date` with an one-liner. 
 
 ## Usage
 
@@ -8,13 +11,13 @@ Use DateConvert to convert Calendar, Instant, ZonedDateTime and even LocalDate.
 
 For example:
 ```java
-// Date -> Calendar
+// java.util.Date to Calendar
 DateConvert.from(date).toCalendar();
 
-// Calendar to UTC ZonedDateTime
+// Calendar to java.time.ZonedDateTime in UTC timezone
 DateConvert.from(calendar).toZonedDateTime(ZoneId.of("UTC"));
 
-// LocalDate -> Date with Time 12:30 and default ZoneId
+// java.time.LocalDate -> java.util.Date with time 12:30 and default ZoneId
 DateConvert.from(localDate).withLocalTime(12, 30, 0, 0).withDefaultZoneId().toDate();
 ```
 
