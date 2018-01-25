@@ -4,9 +4,13 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 import java.sql.Timestamp;
+import java.time.DayOfWeek;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.Month;
+import java.time.MonthDay;
+import java.time.Year;
 import java.time.ZonedDateTime;
 import java.util.Calendar;
 import java.util.Date;
@@ -51,6 +55,11 @@ public class DateConvertTest {
 
 		timestamp = DateConvert.from(date).toTimestamp();
 		assertThat(DateConvert.from(timestamp).toDate(), is(date));
+
+		assertThat(DateConvert.from(date).toYear(), is(Year.of(2018)));
+		assertThat(DateConvert.from(date).toMonth(), is(Month.of(2)));
+		assertThat(DateConvert.from(date).toMonthDay(), is(MonthDay.of(1, 1)));
+		assertThat(DateConvert.from(date).toDayOfWeek(), is(DayOfWeek.of(1)));
 	}
 
 	@Test
