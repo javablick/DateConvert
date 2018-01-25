@@ -2,7 +2,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.java.blick</groupId>
 	<artifactId>dateconvert</artifactId>
-	<version>1.0.0</version>
+	<version>1.0.1-SNAPSHOT</version>
 
 	<properties>
 		<jdk.tools.version>1.8</jdk.tools.version>
@@ -11,7 +11,7 @@
 	<scm>
 		<connection>scm:git:https://github.com/Java-Blick/DateConvert.git</connection>
 		<developerConnection>scm:git:https://github.com/Java-Blick/DateConvert.git</developerConnection>
-	  <tag>dateconvert-1.0.0</tag>
+	  <tag>HEAD</tag>
   </scm>
 
 	<build>
