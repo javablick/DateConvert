@@ -52,7 +52,7 @@ For maven the pom.xml looks like
 </dependencies>
 
 ```
-3. Use the DateConvert class, e.g. DateConvert.from(date).toCalendar(); 
+3. Use the DateConvert class, e.g. `DateConvert.from(date).toCalendar();` 
 
 ## Questions? Need help?
 Write me an [email](mailto:michael.kosin@java-blick.com?Subject=DateConvert).
