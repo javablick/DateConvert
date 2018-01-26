@@ -17,7 +17,7 @@ import java.util.TimeZone;
 import com.java.blick.dates.converter.Calendars;
 import com.java.blick.dates.converter.ZonedDateTimes;
 
-public abstract class DatesWithoutZone {
+public abstract class DateWithoutZone {
 
 	protected abstract long toMillis();
 
@@ -55,8 +55,8 @@ public abstract class DatesWithoutZone {
 		return toLocalDateTimeWithDefaultZone().toLocalDate();
 	}
 
-	public LocalTime toLocalTime() {
-		return toLocalDateTimeWithDefaultZone().toLocalTime();
+	public LocalTime toLocalTime(ZoneId zone) {
+		return toLocalDateTime(zone).toLocalTime();
 	}
 
 	public Calendar toCalendar(ZoneId zone) {

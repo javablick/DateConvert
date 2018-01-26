@@ -25,6 +25,9 @@ import com.java.blick.dates.converter.ZonedDateTimes;
  */
 public class DateConvert {
 
+	private DateConvert() {
+	}
+
 	public static Dates from(Date date) {
 		return new Dates(date);
 	}

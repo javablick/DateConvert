@@ -8,9 +8,9 @@ import java.util.Date;
 import java.util.Objects;
 import java.util.TimeZone;
 
-import com.java.blick.dates.converter.abstracts.DatesWithZone;
+import com.java.blick.dates.converter.abstracts.DateWithZone;
 
-public class ZonedDateTimes extends DatesWithZone {
+public class ZonedDateTimes extends DateWithZone {
 
 	private ZonedDateTime zonedDateTime;
 

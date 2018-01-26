@@ -4,9 +4,9 @@ import java.sql.Timestamp;
 import java.time.Instant;
 import java.util.Date;
 
-import com.java.blick.dates.converter.abstracts.DatesWithoutZone;
+import com.java.blick.dates.converter.abstracts.DateWithoutZone;
 
-public final class Millis extends DatesWithoutZone {
+public final class Millis extends DateWithoutZone {
 
 	private long millis;
 

@@ -11,7 +11,7 @@ import java.time.YearMonth;
 import java.time.ZonedDateTime;
 import java.util.Calendar;
 
-public abstract class DatesWithZone {
+public abstract class DateWithZone {
 
 	protected abstract Calendar toCalendar();
 

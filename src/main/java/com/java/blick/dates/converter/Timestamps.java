@@ -5,9 +5,9 @@ import java.time.Instant;
 import java.util.Date;
 import java.util.Objects;
 
-import com.java.blick.dates.converter.abstracts.DatesWithoutZone;
+import com.java.blick.dates.converter.abstracts.DateWithoutZone;
 
-public class Timestamps extends DatesWithoutZone {
+public class Timestamps extends DateWithoutZone {
 
 	private Timestamp timestamp;
 

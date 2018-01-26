@@ -7,9 +7,9 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Objects;
 
-import com.java.blick.dates.converter.abstracts.DatesWithZone;
+import com.java.blick.dates.converter.abstracts.DateWithZone;
 
-public final class Calendars extends DatesWithZone {
+public final class Calendars extends DateWithZone {
 
 	private Calendar calendar;
 
