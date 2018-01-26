@@ -99,6 +99,14 @@ public class DateConvertTest {
 
 		cal = Calendar.getInstance();
 		cal.clear();
+		cal.set(2018, 0, 1, 7, 30);
+		cal.setTimeZone(TimeZone.getTimeZone("UTC"));
+		date = cal.getTime();
+
+		dates = DateConvert.from(date);
+
+		cal = Calendar.getInstance();
+		cal.clear();
 		cal.set(2017, 11, 31, 21, 30);
 		cal.setTimeZone(TimeZone.getTimeZone(zoneId));
 
