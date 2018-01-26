@@ -13,13 +13,13 @@ Use DateConvert to convert Calendar, Instant, ZonedDateTime and even LocalDate.
 
 For example:
 ```java
-// java.util.Date to Calendar
-DateConvert.from(date).toCalendar();
+// java.util.Date to Calendar with default zone
+DateConvert.from(date).toCalendarWithDefaultZone();
 
-// Calendar to java.time.ZonedDateTime in UTC timezone
-DateConvert.from(calendar).toZonedDateTime(ZoneId.of("UTC"));
+// Calendar to java.time.ZonedDateTime
+DateConvert.from(calendar).toZonedDateTime();
 
-// java.time.LocalDate -> java.util.Date with time 12:30 and default ZoneId
+// java.time.LocalDate -> java.util.Date with time 12:30 and default zone
 DateConvert.from(localDate).withLocalTime(12, 30, 0, 0).withDefaultZoneId().toDate();
 ```
 
