@@ -1,6 +1,6 @@
 [![Build Status](https://travis-ci.org/javablick/DateConvert.svg?branch=master)](https://travis-ci.org/javablick/DateConvert)
 [![CircleCI](https://circleci.com/gh/javablick/DateConvert/tree/master.svg?style=shield)](https://circleci.com/gh/javablick/DateConvert/tree/master)
-[![Coverage Status](https://coveralls.io/repos/github/javablick/DateConvert/badge.svg?branch=master)](https://coveralls.io/github/javablick/DateConvert?branch=master)
+[![Coverage Status](https://coveralls.io/repos/github/javablick/DateConvert/badge.svg?branch=master&service=github)](https://coveralls.io/github/javablick/DateConvert?branch=master)
 # DateConvert
 
 Simple Java library to convert common Date/Time objects. Use old style Date or Calendar and convert it to new Java 7+ Date/Time objects or visa versa.
@@ -63,5 +63,6 @@ For maven the pom.xml looks like
 Write me an [email](mailto:michael.kosin@java-blick.com?Subject=DateConvert).
 
 See also my [homepage](https://www.java-blick.com).
+
 
 
