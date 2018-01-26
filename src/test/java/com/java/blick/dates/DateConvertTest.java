@@ -36,6 +36,10 @@ public class DateConvertTest {
 
 	@Test
 	public void test_readme_instructions() {
+		calendar = Calendar.getInstance();
+		date = calendar.getTime();
+		localDate = LocalDate.now();
+
 		DateConvert.from(date).toCalendarWithDefaultZone();
 		DateConvert.from(calendar).toZonedDateTime();
 		DateConvert.from(localDate).withLocalTime(12, 30, 0, 0).withDefaultZoneId().toDate();
