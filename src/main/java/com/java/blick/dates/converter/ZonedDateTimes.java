@@ -1,21 +1,16 @@
 package com.java.blick.dates.converter;
 
 import java.sql.Timestamp;
-import java.time.DayOfWeek;
 import java.time.Instant;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
-import java.time.Month;
-import java.time.MonthDay;
-import java.time.Year;
-import java.time.YearMonth;
 import java.time.ZonedDateTime;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Objects;
+import java.util.TimeZone;
 
-public class ZonedDateTimes {
+import com.java.blick.dates.converter.abstracts.DatesWithZone;
+
+public class ZonedDateTimes extends DatesWithZone {
 
 	private ZonedDateTime zonedDateTime;
 
@@ -24,53 +19,26 @@ public class ZonedDateTimes {
 		this.zonedDateTime = zonedDateTime;
 	}
 
-	public ZonedDateTime toZonedDateTime() {
+	@Override
+	protected ZonedDateTime toZonedDateTime() {
 		return zonedDateTime;
 	}
 
 	public Date toDate() {
 		return new Date(toMillis());
-
 	}
 
 	public Timestamp toTimestamp() {
 		return new Timestamp(toMillis());
 	}
 
-	public LocalDateTime toLocalDateTime() {
-		return zonedDateTime.toLocalDateTime();
-	}
-
-	public LocalDate toLocalDate() {
-		return zonedDateTime.toLocalDate();
-	}
-
-	public LocalTime toLocalTime() {
-		return zonedDateTime.toLocalTime();
-	}
-
-	public Month toMonth() {
-		return new Millis(toMillis()).toMonth();
-	}
-
-	public MonthDay toMonthDay() {
-		return new Millis(toMillis()).toMonthDay();
-	}
-
-	public Year toYear() {
-		return new Millis(toMillis()).toYear();
-	}
-
-	public YearMonth toYearMonth() {
-		return new Millis(toMillis()).toYearMonth();
-	}
-
-	public DayOfWeek toDayOfWeek() {
-		return new Millis(toMillis()).toDayOfWeek();
-	}
-
+	@Override
 	public Calendar toCalendar() {
-		return new Millis(toMillis()).toCalendar();
+		Calendar calendar = Calendar.getInstance();
+		calendar.clear();
+		calendar.setTimeZone(TimeZone.getTimeZone(zonedDateTime.getZone()));
+		calendar.setTimeInMillis(toMillis());
+		return calendar;
 	}
 
 	public Instant toInstant() {

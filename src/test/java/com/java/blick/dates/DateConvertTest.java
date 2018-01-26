@@ -32,13 +32,13 @@ public class DateConvertTest {
 	public void converting_from_to_date() {
 		Calendar cal = Calendar.getInstance();
 		cal.clear();
-		cal.set(2018, 1, 1, 12, 30);
+		cal.set(2018, 0, 1, 12, 30);
 		date = cal.getTime();
 				
 		instant = DateConvert.from(date).toInstant();
 		assertThat(DateConvert.from(instant).toDate(), is(date));
 
-		calendar = DateConvert.from(date).toCalendar();
+		calendar = DateConvert.from(date).toCalendarWithDefaultZone();
 		assertThat(DateConvert.from(calendar).toDate(), is(date));
 		
 		localDate = DateConvert.from(date).withDefaultZone().toLocalDate();
@@ -47,7 +47,7 @@ public class DateConvertTest {
 		localDateTime = DateConvert.from(date).withDefaultZone().toLocalDateTime();
 		assertThat(DateConvert.from(localDateTime).withDefaultZoneId().toDate(), is(date));
 
-		zonedDateTime = DateConvert.from(date).toZonedDateTime();
+		zonedDateTime = DateConvert.from(date).toZonedDateTimeWithDefaultZone();
 		assertThat(DateConvert.from(zonedDateTime).toDate(), is(date));
 
 		millis = DateConvert.from(date).toMillis();
@@ -56,10 +56,10 @@ public class DateConvertTest {
 		timestamp = DateConvert.from(date).toTimestamp();
 		assertThat(DateConvert.from(timestamp).toDate(), is(date));
 
-		assertThat(DateConvert.from(date).toYear(), is(Year.of(2018)));
-		assertThat(DateConvert.from(date).toMonth(), is(Month.of(2)));
-		assertThat(DateConvert.from(date).toMonthDay(), is(MonthDay.of(1, 1)));
-		assertThat(DateConvert.from(date).toDayOfWeek(), is(DayOfWeek.of(1)));
+		assertThat(DateConvert.from(date).toYearWithDefaultZone(), is(Year.of(2018)));
+		assertThat(DateConvert.from(date).toMonthWithDefaultZone(), is(Month.of(1)));
+		assertThat(DateConvert.from(date).toMonthDayWithDefaultZone(), is(MonthDay.of(1, 1)));
+		assertThat(DateConvert.from(date).toDayOfWeekWithDefaultZone(), is(DayOfWeek.of(1)));
 	}
 
 	@Test
@@ -69,10 +69,10 @@ public class DateConvertTest {
 		calendar.set(2018, 1, 1, 12, 30);
 
 		date = DateConvert.from(calendar).toDate();
-		assertThat(DateConvert.from(date).toCalendar(), is(calendar));
+		assertThat(DateConvert.from(date).toCalendarWithDefaultZone(), is(calendar));
 
 		instant = DateConvert.from(calendar).toInstant();
-		assertThat(DateConvert.from(instant).toCalendar(), is(calendar));
+		assertThat(DateConvert.from(instant).toCalendarWithDefaultZone(), is(calendar));
 
 		localDate = DateConvert.from(calendar).toLocalDate();
 		assertThat(DateConvert.from(localDate).withLocalTime(12, 30, 0, 0).withDefaultZoneId().toCalendar(),
@@ -82,14 +82,14 @@ public class DateConvertTest {
 		assertThat(DateConvert.from(localDate).withLocalTime(12, 30, 0, 0).withDefaultZoneId().toCalendar(),
 				is(calendar));
 
-		zonedDateTime = DateConvert.from(calendar).toZonedDateTimeWithDefaultZone();
+		zonedDateTime = DateConvert.from(calendar).toZonedDateTime();
 		assertThat(DateConvert.from(zonedDateTime).toCalendar(), is(calendar));
 
 		millis = DateConvert.from(calendar).toMillis();
-		assertThat(DateConvert.from(millis).toCalendar(), is(calendar));
+		assertThat(DateConvert.from(millis).toCalendarWithDefaultZone(), is(calendar));
 
 		timestamp = DateConvert.from(calendar).toTimestamp();
-		assertThat(DateConvert.from(timestamp).toCalendar(), is(calendar));
+		assertThat(DateConvert.from(timestamp).toCalendarWithDefaultZone(), is(calendar));
 	}
 
 	@Test
@@ -102,14 +102,14 @@ public class DateConvertTest {
 		date = DateConvert.from(instant).toDate();
 		assertThat(DateConvert.from(date).toInstant(), is(instant));
 
-		calendar = DateConvert.from(instant).toCalendar();
+		calendar = DateConvert.from(instant).toCalendarWithDefaultZone();
 		assertThat(DateConvert.from(calendar).toInstant(), is(instant));
 
-		localDate = DateConvert.from(instant).toLocalDate();
+		localDate = DateConvert.from(instant).toLocalDateWithDefaultZone();
 		assertThat(DateConvert.from(localDate).withLocalTime(10, 15, 0, 0).withDefaultZoneId().toInstant(),
 				is(instant));
 
-		localDateTime = DateConvert.from(instant).toLocalDateTime();
+		localDateTime = DateConvert.from(instant).toLocalDateTimeWithDefaultZone();
 		assertThat(DateConvert.from(localDate).withLocalTime(10, 15, 0, 0).withDefaultZoneId().toInstant(),
 				is(instant));
 
